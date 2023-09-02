@@ -44,9 +44,22 @@
       }
     ],
     "imageResize": true,
-    "uniqCompNum": 4,
+    "uniqCompNum": 5,
     "versionPublish": "5.7.12",
-    "screenshot": "screenshot.png"
+    "screenshot": "screenshot.png",
+    "favicon": false,
+    "mbrsiteDomain": "jppzwqkpwl",
+    "usedWebp": false,
+    "cssOptimize": false,
+    "lazyLoad": false,
+    "robotsSwitcher": false,
+    "sitemapSwitcher": false,
+    "sitemapSwitcherAuto": false,
+    "siteUrl": false,
+    "cookiesAlert": false,
+    "gdpr": false,
+    "pwa-switcher": false,
+    "publishChangesOnly": true
   },
   "pages": {
     "index.html": {
@@ -1278,6 +1291,97 @@
           "_protectedParams": [],
           "_global": true,
           "_once": "footers",
+          "_params": {}
+        },
+        {
+          "alias": false,
+          "_styles": {
+            "& when not (@fullScreen)": {
+              "padding-top": "(@paddingTop * 1rem)",
+              "padding-bottom": "(@paddingBottom * 1rem)"
+            },
+            "& when (@bg-type = 'image')": {
+              "background-image": "url(@bg-value)"
+            },
+            "& when (@bg-type = 'color')": {
+              "background-color": "@bg-value",
+              "& when (@linerGradient)": {
+                "background": "linear-gradient(180deg, @bg-value, @gradientColor)",
+                "& when (@horizontallyGradient)": {
+                  "background": "linear-gradient(90deg, @bg-value, @gradientColor) !important"
+                }
+              }
+            },
+            ".display-1": {
+              "@media (max-width: 1400px)": {
+                "font-size": "(@display1Size * 0.8rem)"
+              }
+            },
+            ".row": {
+              "@media (max-width: 575px)": {
+                "text-align": "center!important"
+              }
+            },
+            ".content-container": {
+              "width": "100%",
+              "padding": "3.5rem 2.5rem",
+              "border-radius": "2rem",
+              "& when (@showContentBg)": {
+                "background-color": "@contentColor",
+                "& when (@linerGradientContent)": {
+                  "background": "linear-gradient(180deg, @contentColor, @gradientColorContent)",
+                  "& when (@horizontallyGradientContent)": {
+                    "background": "linear-gradient(90deg, @contentColor, @gradientColorContent) !important"
+                  }
+                }
+              },
+              "@media (max-width: 767px)": {
+                "padding": "1rem 0rem",
+                "padding-top": "2rem"
+              }
+            },
+            "img": {
+              "border-radius": "2rem",
+              "height": "100%",
+              "object-fit": "cover"
+            },
+            ".mbr-section-title": {
+              "color": "#ffffff",
+              "@media (max-width: 575px)": {
+                "text-align": "center"
+              }
+            },
+            ".mbr-text": {
+              "color": "#ffffff"
+            },
+            ".mbr-fallback-image.disabled": {
+              "display": "none"
+            },
+            ".mbr-fallback-image": {
+              "display": "block",
+              "background-size": "cover",
+              "background-position": "center center",
+              "width": "100%",
+              "height": "100%",
+              "position": "absolute",
+              "top": "0",
+              "& when (@bg-type = 'video')": {
+                "background-image": "url(@fallBackImage)"
+              }
+            },
+            ".mbr-section-title, .mbr-section-btn": {
+              "color": "#eccdf3"
+            }
+          },
+          "_name": "header02",
+          "_sourceTheme": "investm5",
+          "_customHTML": "<section data-bs-version=\"5.1\" class=\"header2\" group=\"Headers\" data-bg-video=\"{{bg.type == 'video' &amp;&amp; bg.value.url}}\" mbr-class=\"{\n    'mbr-fullscreen': fullScreen,\n    'mbr-parallax-background': bg.parallax}\">\n\n    <mbr-parameters>\n        <header>Size</header>\n        <input type=\"checkbox\" title=\"Full Screen\" name=\"fullScreen\">\n        <input type=\"checkbox\" title=\"Full Width\" name=\"fullWidth\">\n        <input type=\"range\" inline=\"\" title=\"Top\" name=\"paddingTop\" min=\"0\" max=\"10\" step=\"1\" value=\"6\" condition=\"fullScreen == false\">\n        <input type=\"range\" inline=\"\" title=\"Bottom\" name=\"paddingBottom\" min=\"0\" max=\"10\" step=\"1\" value=\"6\" condition=\"fullScreen == false\">\n        <header>Show/Hide</header>\n        <input type=\"checkbox\" title=\"Title\" name=\"showTitle\" checked=\"\">\n        <input type=\"checkbox\" title=\"Text\" name=\"showText\" checked=\"\">\n        <input type=\"checkbox\" title=\"Buttons\" name=\"showButtons\" checked=\"\">\n        <input type=\"checkbox\" title=\"Content BG\" name=\"showContentBg\" checked=\"\">\n        <input type=\"color\" title=\"Color\" name=\"contentColor\" value=\"#edb6c2\" condition=\"showContentBg\">\n        <input type=\"checkbox\" title=\"Liner Gradient\" name=\"linerGradientContent\" condition=\"showContentBg\" checked=\"\">\n        <input type=\"checkbox\" title=\"Horizontally\" name=\"horizontallyGradientContent\" condition=\"showContentBg &amp;&amp; linerGradientContent\" checked=\"\">\n        <input type=\"color\" title=\"Gradient Color\" name=\"gradientColorContent\" value=\"#c482d0\" condition=\"linerGradientContent &amp;&amp; showContentBg\">\n        <header>Background</header>\n        <fieldset type=\"background\" name=\"bg\" parallax=\"\">\n            <input type=\"image\" title=\"Image\" value=\"@PROJECT_PATH@/assets/images/background1.jpg\">\n            <input type=\"color\" title=\"Color\" value=\"#ffffff\" selected=\"\">\n            <input type=\"video\" title=\"Video\" value=\"https://vimeo.com/428046504\">\n        </fieldset>\n        <header condition=\"bg.type === 'video'\">Fallback Image</header>\n        <input type=\"image\" title=\"Fallback Image\" value=\"@PROJECT_PATH@/assets/images/background1.jpg\" name=\"fallBackImage\" condition=\"bg.type === 'video'\">\n\n        <input type=\"checkbox\" title=\"Liner Gradient\" name=\"linerGradient\" condition=\"bg.type == 'color'\" checked=\"\">\n        <input type=\"checkbox\" title=\"Horizontally\" name=\"horizontallyGradient\" condition=\"bg.type == 'color' &amp;&amp; linerGradient\">\n        <input type=\"color\" title=\"Gradient Color\" name=\"gradientColor\" value=\"#eccdf3\" condition=\"linerGradient &amp;&amp; bg.type == 'color'\">\n        <input type=\"checkbox\" title=\"Overlay\" name=\"overlay\" condition=\"bg.type !== 'color'\" checked=\"\">\n        <input type=\"color\" title=\"Overlay Color\" name=\"overlayColor\" value=\"#242424\" condition=\"overlay &amp;&amp; bg.type !== 'color'\">\n        <input type=\"range\" inline=\"\" title=\"Opacity\" name=\"overlayOpacity\" min=\"0\" max=\"1\" step=\"0.1\" value=\"0.5\" condition=\"overlay &amp;&amp; bg.type !== 'color'\">\n    </mbr-parameters>\n    <div class=\"mbr-fallback-image disabled\" mbr-if=\"bg.type == 'video'\"></div>\n\n\n    <div class=\"mbr-overlay\" mbr-if=\"overlay &amp;&amp; bg.type !== 'color'\" opacity=\"{{overlayOpacity}}\" bg-color=\"{{overlayColor}}\"></div>\n\n    <div class=\"\" mbr-class=\"{'container': !fullWidth, 'container-fluid': fullWidth}\">\n        <div class=\"row {{contentAlign}}\">\n            <div class=\"col-12 col-lg-12\">\n                <div class=\"content-container row m-0\">\n<div class=\"col-lg-8 mb-5 pb-5\">\n                    <h1 class=\"mbr-section-title mbr-fonts-style align-left mb-5\" data-app-selector=\".mbr-section-title, .mbr-section-btn\" mbr-theme-style=\"display-1\" mbr-if=\"showTitle\"><b><br></b><br><b>ZAINWESTUJ W</b><br><b> SONICZNĄ MOC</b></h1>\n                    <p class=\"mbr-text mbr-fonts-style align-left mb-5\" mbr-theme-style=\"display-5\" mbr-if=\"showText\" data-app-selector=\".mbr-text\">Wszystko pod kontrolą za pomocą jednego przycisku.</p>\n                    <div mbr-buttons=\"\" mbr-theme-style=\"display-7\" class=\"mbr-section-btn align-left\" mbr-if=\"showButtons\"><a class=\"btn btn-lg btn-secondary\" href=\"https://mobiri.se\" data-app-placeholder=\"Type Text\">START</a></div>\n                    </div>\n                    \n                    <div class=\"col-lg-4\">\n                    <img class=\"w-100\" src=\"@PROJECT_PATH@/assets/images/szczot7-375x500.jpg\" alt=\"Mobirise Website Builder\">\n                    \n                    </div>\n                    \n                </div>\n            </div>\n            \n           \n        </div>\n    </div>\n</section>",
+          "_anchor": "header02-4",
+          "_isUserblock": true,
+          "_cid": "tOHQBxBc88",
+          "_protectedParams": [],
+          "_global": false,
+          "_once": false,
           "_params": {}
         }
       ]
